@@ -1,0 +1,36 @@
+{% if latest_victim_list %}
+  <table id="table" class="table table-hover table-mc-light-blue">
+    <thead>
+      <tr>
+        <th>Host</th>
+        <th>Internal IP</th>
+        <th>External IP</th>
+        <th>User</th>
+        <th>OS</th>
+        <th>Admin</th>
+        <th>Last beacon</th>
+      </tr>      
+    </thead>
+    <tbody>
+    {% for victim in latest_victim_list %}
+      <tr>
+        <td data-title="Hostname">
+          <a href="{% url 'candela:victim_details' victim.id %}">{{ victim.host_name }}</a>
+        </td>
+        <td data-title="InternalIP">{{ victim.internal_ip }}</td>
+        <td data-title="ExternalIP">{{ victim.external_ip }}</td>
+        <td data-title="User">{{ victim.current_user }}</td>
+        <td data-title="OS">{{ victim.os }}</td>
+        <td data-title="Admin">{{ victim.admin }}</td>
+        <td data-title="LastBeacon">{{ victim.last_beacon|date:'Y-m-d H:i' }}</td>
+      </tr>
+      <tr>
+        <td id="{{ victim.id }}" class="details" colspan="7"></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No victims yet...</p>
+{% endif %}

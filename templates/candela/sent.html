@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="4">Commands sent</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for command in commands_sent %}
+    <tr>
+      <td data-title="CommandType">{{ command.command_type }}</td>
+      <td data-title="CommandParam">{{ command.command_param }}</td>
+      <td data-title="CommandTimestamp">{{ command.timestamp|date:'Y-m-d H:i' }}</td>
+      <td data-title="CommandStatus">{{ command.status }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Victims Overview</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      setInterval(function() {
+        $("#victims_table").load("{% url 'candela:list_victims' %}");
+      }, 3000);
+    });
+  </script>
+</head>
+<body>
+  <div id="victims_table">
+    <script type="text/javascript">
+      $("#victims_table").load("{% url 'candela:list_victims' %}");
+    </script>
+  </div>
+</body>
+</html>

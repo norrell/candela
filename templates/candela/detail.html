@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      setInterval(function() {
+        $("#sent_commands").load("{% url 'candela:victim_sent' victim_id %}");
+        $("#command_stack_table").load("{% url 'candela:victim_stack' victim_id %}");
+      }, 10000);
+
+      $('#submitCommand').click(function() {
+        var url = '{% url 'candela:victim_stack' victim_id %}';
+        $.ajax ({
+          type: 'POST',
+          url: url,
+          data: $('#newCommandForm').serialize(),
+          success: function(data) {
+            //alert(data);
+          }
+        });
+        $('#id_command_type').val('SLEP');
+        $('#id_command_param').val('');
+        $("#command_stack_table").load("{% url 'candela:victim_stack' victim_id %}");
+        return false;
+      });
+    });
+  </script>
+</head>
+<body>
+  <div id="sent_commands">
+    <script type="text/javascript">
+      $("#sent_commands").load("{% url 'candela:victim_sent' victim_id %}");
+    </script>
+  </div>
+  <div id="command_stack">
+    <div id="command_stack_table">
+      <script type="text/javascript">
+        $("#command_stack_table").load("{% url 'candela:victim_stack' victim_id %}");
+      </script>
+    </div>
+    <!-- Insert form here! -->
+    <form id="newCommandForm" action="" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input id="submitCommand" type="submit" value="ADD">
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="4">Commands stack</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for command in commands_stacked %}
+    <tr>
+      <td data-title="CommandID">{{ forloop.counter }}</td>  
+      <td data-title="CommandType">{{ command.command_type }}</td>
+      <td data-title="CommandParam">{{ command.command_param }}</td>
+      <td><button class="DelFromStack">x</button></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
